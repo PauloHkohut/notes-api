@@ -1,0 +1,15 @@
+{
+  "name": "notes-api",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/PauloHkohut/notes-api.git",
+  "author": "Paulo Henrique <pauloq_henrique@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
