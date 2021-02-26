@@ -2,21 +2,19 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', function(req, res) {
-    res.json([{nome: 'Paulo', email: 'pauloq_henrique@hotmail.com'},
-    {nome: 'Henrique', email: 'pauloq_henrique@hotmail.com'}]);
+    res.json(['Método nota GET']);
 });
 
 router.post('/', function(req, res) {
-    res.json(['Método POST']);
+    res.json(['Método nota POST']);
 });
 
 router.put('/', function(req, res) {
-    res.json(['Método PUT']);
+    res.json(['Método nota PUT']);
 });
 
 router.delete('/', function(req, res) {
-    res.json(['Método DELETE']);
+    res.json(['Método nota DELETE']);
 });
-
 
 module.exports = router;
