@@ -1,19 +1,19 @@
-const express = require('express');
-const router = express.Router();
+const {Router} = require('express');
+const router = Router();
 
-router.get('/', function(req, res) {
+router.get('/', (req, res) => {
     res.json(['Método nota GET']);
 });
 
-router.post('/', function(req, res) {
+router.post('/', (req, res) => {
     res.json(['Método nota POST']);
 });
 
-router.put('/', function(req, res) {
+router.put('/', (req, res) => {
     res.json(['Método nota PUT']);
 });
 
-router.delete('/', function(req, res) {
+router.delete('/', (req, res) => {
     res.json(['Método nota DELETE']);
 });
 

@@ -14,6 +14,6 @@ app.use('/nota', nota);
 app.use('/checklist', checklist);
 app.use('/tag', tag);
 
-app.listen(port, function() {
+app.listen(port, () => {
     console.log(`Aplicação rodando em http://localhost:${port}`);
 })
