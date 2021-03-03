@@ -1,3 +1,4 @@
+const { sequelize } = require('../models')
 const {Router} = require('express');
 const router = Router();
 
