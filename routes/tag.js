@@ -1,20 +1,21 @@
+const database = require('../models');
 const {Router} = require('express');
 const router = Router();
 
 router.get('/', (req, res) => {
-    res.json(['Método nota GET']);
+    res.json(['Método tag GET']);
 });
 
 router.post('/', (req, res) => {
-    res.json(['Método nota POST']);
+    res.json(['Método tag POST']);
 });
 
 router.put('/', (req, res) => {
-    res.json(['Método nota PUT']);
+    res.json(['Método tag PUT']);
 });
 
 router.delete('/', (req, res) => {
-    res.json(['Método nota DELETE']);
+    res.json(['Método tag DELETE']);
 });
 
 module.exports = router;

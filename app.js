@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const usuario = require('./tabelas/usuario');
-const nota = require('./tabelas/nota');
-const checklist = require('./tabelas/checklist');
-const tag = require('./tabelas/tag');
+const usuario = require('./routes/usuario');
+const nota = require('./routes/nota');
+const checklist = require('./routes/checklist');
+const tag = require('./routes/tag');
 const app = express();
 const port = 3000;
 

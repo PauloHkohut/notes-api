@@ -1,3 +1,4 @@
+const database = require('../models');
 const {Router} = require('express');
 const router = Router();
 
