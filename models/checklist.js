@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    const Tag = sequelize.define('Tag',
+    const Cheklist = sequelize.define('Checklist',
     {
         id: {
             autoIncrement: true,
@@ -15,23 +15,29 @@ module.exports = (sequelize, DataTypes) => {
             references: {
                 model: 'nota',
                 key: 'id',
-            },  
+            },
         },
-        nome: {
-            type: DataTypes.STRING,
-            allowNull: false,
+        descricao: {
+            type: DataTypes.TEXT,
+            allowNull: true,
+        },
+        concluida: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
         },
     },
+
         {
-            tableName: 'tag',
+            tableName: 'checklist',
             timestamp: false,
         },
     );
 
-    Tag.associate= function(models){
+    Cheklist.associate = function(models){
         this.belongsTo(models.Nota, {
             foreignKey: 'notaId',
         });
     };
-    return Tag;
+
+    return Cheklist;
 };

@@ -53,5 +53,11 @@ module.exports = (sequelize, DataTypes) => {
             });
         };
 
+        Nota.associate = function(models){
+            this.hasMany(models.Checklist, {
+                foreignKey: 'notaId',
+            });
+        };
+
     return Nota;
 };
