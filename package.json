@@ -6,16 +6,20 @@
   "author": "Paulo Henrique <pauloq_henrique@hotmail.com>",
   "license": "MIT",
   "scripts": {
+    "serverdev": "cross-env NODE_ENV=development nodemon app.js",
+    "serverprod": "cross-env NODE_ENV=production nodemon app.js",
     "start": "nodemon app.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
     "cross-env": "^7.0.3",
     "express": "^4.17.1",
+    "nodemon": "^2.0.7",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^6.5.1",
+    "sequelize": "^6.6.1",
     "sequelize-auto": "^0.8.1",
-    "sequelize-auto-models": "^0.2.14"
+    "sequelize-auto-models": "^0.2.14",
+    "yarn": "^1.22.10"
   }
 }
