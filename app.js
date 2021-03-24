@@ -6,19 +6,23 @@ const tag = require('./routes/tag');
 const checklist = require('./routes/checklist');
 const app = express();
 //const port = 3000;
+const login = require('./routes/login');
+const auth = require('./middlewares/auth');
 const fs = require('fs');
 const https = require('https');
-//const cors = require('cors');
+const cors = require('cors');
 const portaHttps = 443;
 
-/*app.use(cors({
+app.use(cors({
     origin: [
         'http://localhost:8080',
     ]
-}));*/
+}));
 
 app.use(bodyParser.json());
 
+app.use('/login', login);
+app.use(auth);
 app.use('/usuario', usuario);
 app.use('/nota', nota);
 app.use('/tag', tag);

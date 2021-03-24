@@ -1,7 +1,23 @@
-
+const jwt = require('jsonwebtoken');
 const { Usuario } = require('../models');
-const usuario = require('../models/usuario');
+const { secret } = require('../config/security');
 const controller = {};
+
+
+controller.login = async (email, senha) => {
+    try {
+        const usuario = await Usuario.findOne({ where: { email }});
+
+        if (usuario.senha =! senha) return false;
+
+        return jwt.sign({ id: usuario.id }, secret, {
+            expiresIn: '24h',
+        });
+    } catch (error) {
+        throw new Error(error);
+    }
+};
+
 
 controller.getUsuarios = async(id = null) => {
     let result = [];
