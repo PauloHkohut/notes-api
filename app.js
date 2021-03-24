@@ -5,7 +5,7 @@ const nota = require('./routes/nota');
 const tag = require('./routes/tag');
 const checklist = require('./routes/checklist');
 const app = express();
-//const port = 3000;
+const port = 3000;
 const login = require('./routes/login');
 const auth = require('./middlewares/auth');
 const fs = require('fs');
@@ -38,6 +38,6 @@ httpsServer.listen(portaHttps, () => {
     console.log(`API rodando seguramente na porta ${portaHttps}`);
 });
 
-/*app.listen(port, () => {
+app.listen(port, () => {
     console.log(`Aplicação rodando em http://localhost:${port}`);
-});*/
+});

@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+const { saltRounds } = require('../config/security');
 const Sequelize = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     const Usuario = sequelize.define('Usuario',
@@ -29,6 +31,21 @@ module.exports = (sequelize, DataTypes) => {
         {
             tableName: 'usuario',
             timestamps: false,
+            hooks: {
+                beforeCreate: (usuario) =>{
+                    usuario.senha = bcrypt.hashSync(usuario.senha, saltRounds);
+                },
+            },
+            defaultScope: {
+                attributes: {
+                    exclude: ['senha'],
+                },
+            },
+            scopes: {
+                login: {
+                    attributes: ['id', 'senha'],
+                },
+            },
         }
     );
 
