@@ -83,7 +83,7 @@ controller.save = async ({ usuarioId, titulo = null, descricao = null, checklist
 
         if (checklists > 0) {
             for (let checklist of checklists) {
-                checklist = { ...checklist, notaId: notaSalva.id };
+                checklist = { ... checklist, notaId: notaSalva.id };
 
                 const checklistSalvo = await Checklist.create(checklist, {
                     transaction,
@@ -96,16 +96,16 @@ controller.save = async ({ usuarioId, titulo = null, descricao = null, checklist
 
         if (tags > 0) {
             for (let tag of tags) {
-                tag = { ...tag, notaId: notaSalva.id };
+                tag = { ... tag, notaId: notaSalva.id };
 
                 const tagSalva = await Tag.create(tag, {
                     transaction,
                 });
-                tagsSalvas = [...tagsSalvas, tagSalva];
+                tagsSalvas = [... tagsSalvas, tagSalva];
             }
         }
 
-        notaSalva = { ...notaSalva, checklists: checklistsSalvos, tags: tagsSalvas };
+        notaSalva = { ... notaSalva, checklists: checklistsSalvos, tags: tagsSalvas };
 
         await transaction.commit();
 
@@ -116,13 +116,12 @@ controller.save = async ({ usuarioId, titulo = null, descricao = null, checklist
     }
 };
 
-controller.edit = async ({ usuarioId, titulo = null, descricao = null, checklists = [], tags = [] }) => {
+controller.edit = async ({ titulo = null, descricao = null, checklists = [], tags = [] }) => {
     const transaction = await sequelize.transaction();
 
     try {
         let { dataValues } = await Nota.update(
             {
-                usuarioId,
                 titulo,
                 descricao,
             },
@@ -137,7 +136,7 @@ controller.edit = async ({ usuarioId, titulo = null, descricao = null, checklist
 
         if (checklists > 0) {
             for (let checklist of checklists) {
-                checklist = { ...checklist, notaId: notaSalva.id };
+                checklist = { ... checklist, notaId: notaSalva.id };
 
                 const checklistSalvo = await Checklist.update(checklist, {
                     transaction,
@@ -150,16 +149,16 @@ controller.edit = async ({ usuarioId, titulo = null, descricao = null, checklist
 
         if (tags > 0) {
             for (let tag of tags) {
-                tag = { ...tag, notaId: notaSalva.id };
+                tag = { ... tag, notaId: notaSalva.id };
 
                 const tagSalva = await Tag.update(tag, {
                     transaction,
                 });
-                tagsSalvas = [...tagsSalvas, tagSalva];
+                tagsSalvas = [... tagsSalvas, tagSalva];
             }
         }
 
-        notaSalva = { ...notaSalva, checklists: checklistsSalvos, tags: tagsSalvas };
+        notaSalva = { ... notaSalva, checklists: checklistsSalvos, tags: tagsSalvas };
 
         await transaction.commit();
 
