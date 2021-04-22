@@ -1,44 +1,37 @@
-const Sequelize = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-    const Cheklist = sequelize.define('Checklist',
-    {
+module.exports = function (sequelize, DataTypes) {
+    const Checklist = sequelize.define(
+      'checklist',
+      {
         id: {
-            autoIncrement: true,
-            autoIncrementIdentity: true,
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            allowNull: false,
+          type: DataTypes.INTEGER,
+          autoIncrement: true,
+          allowNull: false,
+          primaryKey: true,
         },
         notaId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'nota',
-                key: 'id',
-            },
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          references: {
+            model: 'nota',
+            key: 'id',
+          },
         },
         descricao: {
-            type: DataTypes.TEXT,
-            allowNull: true,
+          type: DataTypes.TEXT,
+          allowNull: false,
         },
         concluida: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-            defaultValue: 0,
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          defaultValue: 0,
         },
-    },
-
-        {
-            tableName: 'checklist',
-            timestamp: false,
-        },
+      },
+      {
+        tableName: 'checklist',
+        timestamps: false,
+      }
     );
-
-    Cheklist.associate = function(models){
-        this.belongsTo(models.Nota, {
-            foreignKey: 'notaId',
-        });
-    };
-
-    return Cheklist;
-};
+  
+    return Checklist;
+  };
+  

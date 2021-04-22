@@ -1,59 +1,51 @@
 const bcrypt = require('bcrypt');
 const { saltRounds } = require('../config/security');
-const Sequelize = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-    const Usuario = sequelize.define('Usuario',
-        {
-            id: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                primaryKey: true,
-                autoIncrement: true,
-            },
-            nome: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            email: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            senha: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            avatar: {
-                type: DataTypes.STRING,
-                allowNull: true,
-            },
+
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(
+    'usuario',
+    {
+      id: {
+        autoIncrement: true,
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
+      nome: {
+        type: DataTypes.STRING(200),
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING(200),
+        allowNull: false,
+      },
+      senha: {
+        type: DataTypes.STRING(300),
+        allowNull: false,
+      },
+      avatar: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+    },
+    {
+      tableName: 'usuario',
+      timestamps: false,
+      hooks: {
+        beforeCreate: (usuario) => {
+          usuario.senha = bcrypt.hashSync(usuario.senha, saltRounds);
         },
-
-        {
-            tableName: 'usuario',
-            timestamps: false,
-            hooks: {
-                beforeCreate: (usuario) =>{
-                    usuario.senha = bcrypt.hashSync(usuario.senha, saltRounds);
-                },
-            },
-            defaultScope: {
-                attributes: {
-                    exclude: ['senha'],
-                },
-            },
-            scopes: {
-                login: {
-                    attributes: ['id', 'senha'],
-                },
-            },
-        }
-    );
-
-        Usuario.associate = function(models){
-            this.hasMany(models.Nota, {
-                foreignKey: 'usuarioId'
-            });
-        };
-
-        return Usuario;
+      },
+      defaultScope: {
+        attributes: {
+          exclude: ['senha'],
+        },
+      },
+      scopes: {
+        login: {
+          attributes: ['id', 'senha'],
+        },
+      },
+    }
+  );
 };
