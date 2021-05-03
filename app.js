@@ -31,10 +31,10 @@ app.use('/nota', nota);
 const key = fs.readFileSync('certs/localhost-key.pem');
 const cert = fs.readFileSync('certs/localhost.pem');
 
-const credentials = { key, cert };
-
-const httpsServer = https.createServer(credentials, app);
+const credencials = { key, cert};
+const httpsServer = https.createServer(credencials, app);
 
 httpsServer.listen(portaHttps, () => {
-  console.log(`API rodando seguramente na porta ${portaHttps}`);
+    console.log(`API rodando seguramente na porta ${portaHttps}`);
 });
+
