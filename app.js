@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 app.use('/login', login);
-app.use(auth);
+app.use('/auth', auth);
 app.use('/usuario', usuario);
 app.use('/checklist', checklist);
 app.use('/tag', tag);
