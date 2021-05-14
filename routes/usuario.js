@@ -5,7 +5,7 @@ const controller = require('../controller/default');
 const { Usuario } = require('../models');
 
 router.get('/', async (req, res) => {
-  const { token } = req;
+  const [type, token] = req.headers['authorization'].split(' ');
 
   const { id } = jwt.decode(token);
 
@@ -29,7 +29,8 @@ router.post('/', async (req, res) => {
 
 router.put('/', async (req, res) => {
   try {
-    const { body, token } = req;
+    const { body } = req;
+    const [type, token] = req.headers['authorization'].split(' ');
 
     const { id } = jwt.decode(token);
 
