@@ -5,7 +5,7 @@ const controller = require('../controller/default');
 const { Usuario } = require('../models');
 
 router.get('/', async (req, res) => {
-  const [type, token] = req.headers['authorization'].split(' ');
+  const { token } = req;
 
   const { id } = jwt.decode(token);
 
@@ -14,23 +14,9 @@ router.get('/', async (req, res) => {
   res.send(usuario);
 });
 
-router.post('/', async (req, res) => {
-  try {
-    const { body } = req;
-
-    const usuario = await controller.save(Usuario, body);
-
-    res.send(usuario);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({ error });
-  }
-});
-
 router.put('/', async (req, res) => {
   try {
-    const { body } = req;
-    const [type, token] = req.headers['authorization'].split(' ');
+    const { body, token } = req;
 
     const { id } = jwt.decode(token);
 
